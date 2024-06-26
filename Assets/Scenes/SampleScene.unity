@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 982249431}
   - component: {fileID: 982249430}
   - component: {fileID: 982249432}
+  - component: {fileID: 982249433}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -395,6 +396,20 @@ CircleCollider2D:
   m_Offset: {x: -0.08844614, y: 0.45831275}
   serializedVersion: 2
   m_Radius: 1.0467589
+--- !u!114 &982249433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982249429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44aed274613c404393d31f170b56c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpForce: 10
 --- !u!1 &1461759864
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +508,7 @@ GameObject:
   - component: {fileID: 1907137082}
   m_Layer: 6
   m_Name: toprakblok
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
