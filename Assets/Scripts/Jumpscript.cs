@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 10f;  // Hareket hýzý
-    public float jumpForce = 10f;  // Zýplama kuvveti
+    public float moveSpeed = 20f;  // Hareket hýzý
+    public float jumpForce = 20f;  // Zýplama kuvveti
 
     private Rigidbody2D rb;
     private bool isDragging = false;
@@ -67,8 +67,31 @@ public class PlayerController : MonoBehaviour
         // Eðer karakter bir bloða deðerse
         if (collision.gameObject.CompareTag("Block"))
         {
-            // Y eksenine zýplama kuvveti uygula
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            // Karakterin alttan çarpmasý durumunda zýplama kuvveti uygula
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if  (contact.normal.y > 0.1f)
+                {
+                    Debug.Log("yukarda");
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    BlockController blockControllerý = collision.gameObject.GetComponent<BlockController>();
+                    if (blockControllerý != null)
+                    {
+
+                        blockControllerý.ReactivateCollider();
+                    }
+                }
+                else if (contact.normal.y < -0.5f)
+                {
+                    // Karakterin üstten çarpmasý durumunda bloðun collider'ýný geçici olarak pasif yap
+                    BlockController blockController = collision.gameObject.GetComponent<BlockController>();
+                    if (blockController != null)
+                    {
+                        blockController.DisableColliderTemporarily();
+                    }
+                }
+               
+            }
         }
     }
 }
